@@ -8,6 +8,9 @@
 #SBATCH -o chroma2gpu_benchmark-%j.out
 #SBATCH -e chroma2gpu_bencmark-%j.err
 
+source /etc/profile.d/modules.sh
+module load rocm/5.2.1
+
 tmp=/tmp/$USER/tmp-$$
 mkdir -p $tmp
 

@@ -8,6 +8,9 @@
 #SBATCH -o pyfr1gpu_benchmark-%j.out
 #SBATCH -e pyfr1gpu_benchmark-%j.err
 
+source /etc/profile.d/modules.sh
+module load rocm/5.2.1
+
 tmp=/tmp/$USER/tmp-$$
 mkdir -p $tmp
 
