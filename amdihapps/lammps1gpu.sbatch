@@ -5,8 +5,8 @@
 #SBATCH --time=167:00:00
 #SBATCH --mem=12GB
 #SBATCH --job-name=$SLURM_JOB_USER
-#SBATCH -o lammps_slurm-%j.out
-#SBATCH -e lammps_slurm-%j.err
+#SBATCH -o lammps1gpu_benchmark-%j.out
+#SBATCH -e lammps1gpu_benchmark-%j.err
 
 tmp=/tmp/$USER/tmp-$$
 mkdir -p $tmp

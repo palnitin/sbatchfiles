@@ -5,8 +5,8 @@
 #SBATCH --time=167:00:00
 #SBATCH --mem=12GB
 #SBATCH --job-name=$SLURM_JOB_USER
-#SBATCH -o chroma_slurm-%j.out
-#SBATCH -e chroma_slurm-%j.err
+#SBATCH -o chroma2gpu_benchmark-%j.out
+#SBATCH -e chroma2gpu_bencmark-%j.err
 
 tmp=/tmp/$USER/tmp-$$
 mkdir -p $tmp
