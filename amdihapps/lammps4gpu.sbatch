@@ -1,0 +1,15 @@
+#!/bin/bash
+
+#SBATCH --nodes=1
+#SBATCH --cpus-per-task=1
+#SBATCH --time=167:00:00
+#SBATCH --mem=12GB
+#SBATCH --job-name=$SLURM_JOB_USER
+#SBATCH -o lammps4gpu_benchmark-%j.out
+#SBATCH -e lammps4pu_benchmark-%j.err
+
+tmp=/tmp/$USER/tmp-$$
+mkdir -p $tmp
+
+singularity run --pwd /benchmark --writable-tmpfs /shared/$SLURM_CLUSTER_NAME/apps/bin/lammps.sif /bin/bash ./benchmark.sh --mode run --prefix /opt/lammps --gpu-aware-mpi --comm device --with-mpi /opt/lammps/tpl/openmpi --kokkos-gpu-arch VEGA90a --ngpus 4 --memsize 32 --out-label /tmp/gpu4
+
