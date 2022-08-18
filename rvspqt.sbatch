@@ -4,11 +4,11 @@
 #SBATCH --cpus-per-task=1
 #SBATCH --time=167:00:00
 #SBATCH --mem=12GB
-#SBATCH --job-name=amdtest
-#SBATCH -o /shared/out/rvspqt-%j.out
-#SBATCH -e /shared/out/rvspqt-%j.err
+#SBATCH --job-name=$SLURM_JOB_USER
+#SBATCH -o rvspqt-%j.out
+#SBATCH -e rvspqt-%j.err
 
 tmp=/tmp/$USER/tmp-$$
 mkdir -p $tmp
 
-/opt/rocm-5.2.0/rvs/rvs -c /opt/rocm-5.2.0/share/rocm-validation-suite/conf/pqt_single.conf
+singularity run /shared/$SLURM_CLUSTER_NAME/apps/bin/rocm_5.2.0-ub20.sif /opt/rocm-5.2.0/rvs/rvs -c /opt/rocm-5.2.0/share/rocm-validation-suite/conf/pqt_single.conf
