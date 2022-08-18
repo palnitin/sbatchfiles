@@ -8,6 +8,9 @@
 #SBATCH -o gromacs_slurm-%j.out
 #SBATCH -e gromacs_slurm-%j.err
 
+source /etc/profile.d/modules.sh
+module load rocm/5.2.1
+
 tmp=/tmp/$USER/tmp-$$
 mkdir -p $tmp
 

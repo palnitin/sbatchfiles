@@ -8,6 +8,9 @@
 #SBATCH -o hpcg_slurm-%j.out
 #SBATCH -e hpcg_slurm-%j.err
 
+source /etc/profile.d/modules.sh
+module load rocm/5.2.1
+
 tmp=/tmp/$USER/tmp-$$
 mkdir -p $tmp
 
