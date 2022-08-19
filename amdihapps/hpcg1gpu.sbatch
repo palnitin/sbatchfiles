@@ -14,4 +14,4 @@ module load rocm/5.2.3
 tmp=/tmp/$USER/tmp-$$
 mkdir -p $tmp
 
-singularity run /shared/$SLURM_CLUSTER_NAME/apps/binrochpcg3.1.0_97.sif mpirun -np 1 hpcg 280 280 280 1860
+singularity run /shared/$SLURM_CLUSTER_NAME/apps/bin/rochpcg3.1.0_97.sif mpirun -np 1 hpcg 280 280 280 1860
