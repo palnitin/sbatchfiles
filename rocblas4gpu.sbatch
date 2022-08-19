@@ -5,8 +5,8 @@
 #SBATCH --time=167:00:00
 #SBATCH --mem=12GB
 #SBATCH --job-name=$SLURM_JOB_USER
-#SBATCH -o rocblas_bench-5.2-%j.out
-#SBATCH -e rocblas_bench-5.2-%j.err
+#SBATCH -o rocblas4gpu_bench-5.2-%j.out
+#SBATCH -e rocblas4gpu_bench-5.2-%j.err
 
 source /etc/profile.d/modules.sh
 module load rocm/5.2.1
