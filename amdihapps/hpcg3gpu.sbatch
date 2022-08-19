@@ -9,7 +9,7 @@
 #SBATCH -e hpcg3gpu_benchmark-%j.err
 
 source /etc/profile.d/modules.sh
-module load rocm/5.2.1
+module load rocm/5.2.3
 
 tmp=/tmp/$USER/tmp-$$
 mkdir -p $tmp
