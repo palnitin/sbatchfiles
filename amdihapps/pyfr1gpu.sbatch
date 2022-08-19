@@ -15,3 +15,4 @@ tmp=/tmp/$USER/tmp-$$
 mkdir -p $tmp
 
 singularity run --bind ./benchmark:/benchmark /shared/$SLURM_CLUSTER_NAME/apps/bin/pyfr1.13.0_44.sif /bin/bash -c "run-benchmark BSF --ngpus 1"
+singularity run --bind ./benchmark:/benchmark /shared/$SLURM_CLUSTER_NAME/apps/bin/pyfr1.13.0_44.sif /bin/bash -c "run-benchmark tgv --ngpus 1"
