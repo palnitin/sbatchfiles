@@ -1,9 +1,10 @@
 #!/bin/bash
 
 #SBATCH --nodes=1
-#SBATCH --cpus-per-task=1
+#SBATCH --ntasks-per-node=4
+#SBATCH --cpus-per-task=8
 #SBATCH --time=167:00:00
-#SBATCH --mem=12GB
+#SBATCH --mem=120GB
 #SBATCH --job-name=$SLURM_JOB_USER
 #SBATCH -o hpcg4gpu_benchmark-%j.out
 #SBATCH -e hpcg4gpu_benchmark-%j.err

@@ -5,8 +5,8 @@
 #SBATCH --time=167:00:00
 #SBATCH --mem=12GB
 #SBATCH --job-name=$SLURM_JOB_USER
-#SBATCH -o namd3_slurm-%j.out
-#SBATCH -e namd3_slurm-%j.err
+#SBATCH -o namd3_benchmark-%j.out
+#SBATCH -e namd3_benchmark-%j.err
 
 source /etc/profile.d/modules.sh
 module load rocm/5.2.3
