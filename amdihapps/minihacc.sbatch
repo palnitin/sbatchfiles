@@ -4,7 +4,7 @@
 #SBATCH --cpus-per-task=1
 #SBATCH --time=167:00:00
 #SBATCH --mem=12GB
-#SBATCH --job-name=$SLURM_JOB_USER
+#SBATCH --job-name=$USER
 #SBATCH -o minihacc_benchmark-%j.out
 #SBATCH -e minihacc_benchmark-%j.err
 
