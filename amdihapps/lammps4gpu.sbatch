@@ -6,7 +6,7 @@
 #SBATCH --mem=12GB
 #SBATCH --job-name=$SLURM_JOB_USER
 #SBATCH -o lammps4gpu_benchmark-%j.out
-#SBATCH -e lammps4pu_benchmark-%j.err
+#SBATCH -e lammps4gpu_benchmark-%j.err
 
 source /etc/profile.d/modules.sh
 module load rocm/5.2.3
