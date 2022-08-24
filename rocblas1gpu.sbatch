@@ -4,7 +4,6 @@
 #SBATCH --cpus-per-task=1
 #SBATCH --time=167:00:00
 #SBATCH --mem=12GB
-#SBATCH --job-name=$USER
 #SBATCH -o rocblas1gpu_bench-5.2-%j.out
 #SBATCH -e rocblas1gpu_bench-5.2-%j.err
 

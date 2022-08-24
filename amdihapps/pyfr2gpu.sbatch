@@ -4,7 +4,6 @@
 #SBATCH --cpus-per-task=1
 #SBATCH --time=167:00:00
 #SBATCH --mem=12GB
-#SBATCH --job-name=$USER
 #SBATCH -o pyfr2gpu_benchmark-%j.out
 #SBATCH -e pyfr2gpu_benchmark-%j.err
 

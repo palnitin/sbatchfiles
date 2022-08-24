@@ -5,7 +5,6 @@
 #SBATCH --cpus-per-task=1
 #SBATCH --time=167:00:00
 #SBATCH --mem=12GB
-#SBATCH --job-name=$USER
 #SBATCH -o hpcg2gpu_benchmark-%j.out
 #SBATCH -e hpcg2gpu_benchmark-%j.err
 
