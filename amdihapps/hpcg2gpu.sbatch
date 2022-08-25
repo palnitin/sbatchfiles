@@ -2,7 +2,7 @@
 
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=2
-#SBATCH --cpus-per-task=1
+#SBATCH --cpus-per-task=4
 #SBATCH --time=167:00:00
 #SBATCH --mem=12GB
 #SBATCH -o hpcg2gpu_benchmark-%j.out
