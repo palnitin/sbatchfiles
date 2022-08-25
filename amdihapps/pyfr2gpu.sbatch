@@ -14,5 +14,6 @@ module load rocm/5.2.3
 tmp=/tmp/$USER/tmp-$$
 mkdir -p $tmp
 
+singularity run pyfr1.13.0_44.sif /bin/bash -c "cp -r /benchmark ./"
 singularity run --bind ./benchmark:/benchmark /shared/$SLURM_CLUSTER_NAME/apps/bin/pyfr1.13.0_44.sif /bin/bash -c "run-benchmark BSF --ngpus 2"
 singularity run --bind ./benchmark:/benchmark /shared/$SLURM_CLUSTER_NAME/apps/bin/pyfr1.13.0_44.sif /bin/bash -c "run-benchmark tgv --ngpus 2"
