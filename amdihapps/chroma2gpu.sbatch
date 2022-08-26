@@ -1,12 +1,12 @@
 #!/bin/bash
 
 #SBATCH --nodes=1
-#SBATCH --cpus-per-task=1
+#SBATCH --ntasks-per-node=2
+#SBATCH --cpus-per-task=8
 #SBATCH --time=167:00:00
 #SBATCH --mem=12GB
-#SBATCH --job-name=$SLURM_JOB_USER
 #SBATCH -o chroma2gpu_benchmark-%j.out
-#SBATCH -e chroma2gpu_bencmark-%j.err
+#SBATCH -e chroma2gpu_benchmark-%j.err
 
 source /etc/profile.d/modules.sh
 module load rocm/5.2.3

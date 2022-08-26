@@ -5,7 +5,6 @@
 #SBATCH --cpus-per-task=8
 #SBATCH --time=167:00:00
 #SBATCH --mem=120GB
-#SBATCH --job-name=$SLURM_JOB_USER
 #SBATCH -o hpcg4gpu_benchmark-%j.out
 #SBATCH -e hpcg4gpu_benchmark-%j.err
 

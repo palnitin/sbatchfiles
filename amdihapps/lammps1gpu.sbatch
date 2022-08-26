@@ -4,7 +4,6 @@
 #SBATCH --cpus-per-task=1
 #SBATCH --time=167:00:00
 #SBATCH --mem=12GB
-#SBATCH --job-name=$SLURM_JOB_USER
 #SBATCH -o lammps1gpu_benchmark-%j.out
 #SBATCH -e lammps1gpu_benchmark-%j.err
 

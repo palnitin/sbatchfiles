@@ -1,10 +1,9 @@
 #!/bin/bash
 
 #SBATCH --nodes=1
-#SBATCH --cpus-per-task=1
+#SBATCH --cpus-per-task=8
 #SBATCH --time=167:00:00
 #SBATCH --mem=12GB
-#SBATCH --job-name=$SLURM_JOB_USER
 #SBATCH -o chroma1gpu_benchmark-%j.out
 #SBATCH -e chroma1gpu_benchmark-%j.err
 
