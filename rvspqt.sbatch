@@ -13,4 +13,4 @@ module load rocm/5.2.3
 tmp=/tmp/$USER/tmp-$$
 mkdir -p $tmp
 
-singularity run /shared/$SLURM_CLUSTER_NAME/apps/bin/rocm_5.2.0-ub20.sif /opt/rocm-5.2.0/rvs/rvs -c /opt/rocm-5.2.0/share/rocm-validation-suite/conf/pqt_single.conf
+singularity run /shared/apps/bin/rocm_5.2.0-ub20.sif /opt/rocm-5.2.0/rvs/rvs -c /opt/rocm-5.2.0/share/rocm-validation-suite/conf/pqt_single.conf
