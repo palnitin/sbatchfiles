@@ -2,7 +2,7 @@
 
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=4
-#SBATCH --cpus-per-task=1
+#SBATCH --cpus-per-task=8
 #SBATCH --time=167:00:00
 #SBATCH --mem=12GB
 #SBATCH -o pyfr2gpu_benchmark-%j.out
