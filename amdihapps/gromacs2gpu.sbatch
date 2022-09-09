@@ -7,6 +7,7 @@
 #SBATCH --mem=64GB
 #SBATCH -o gromacs2gpu_benchmark-%j.out
 #SBATCH -e gromacs2gpu_benchmark-%j.err
+#SBATCH --gres=gpu:2
 
 source /etc/profile.d/modules.sh
 module load rocm/5.2.3
