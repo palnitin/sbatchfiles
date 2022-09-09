@@ -1,11 +1,12 @@
 #!/bin/bash
 
 #SBATCH --nodes=1
-#SBATCH --cpus-per-task=1
+#SBATCH --cpus-per-task=10
 #SBATCH --time=167:00:00
-#SBATCH --mem=12GB
+#SBATCH --mem=64GB
 #SBATCH -o hpcg1gpu_benchmark-%j.out
 #SBATCH -e hpcg1gpu_benchmark-%j.err
+#SBATCH --gres=gpu:1
 
 source /etc/profile.d/modules.sh
 module load rocm/5.2.3
@@ -13,4 +14,4 @@ module load rocm/5.2.3
 tmp=/tmp/$USER/tmp-$$
 mkdir -p $tmp
 
-singularity run /shared/$SLURM_CLUSTER_NAME/apps/bin/rochpcg3.1.0_97.sif mpirun -np 1 hpcg 280 280 280 1860
+singularity run /shared/apps/bin/rochpcg3.1.0_97.sif mpirun -np 1 hpcg 280 280 280 1860
