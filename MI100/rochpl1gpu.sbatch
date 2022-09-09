@@ -15,4 +15,4 @@ module load rocm/5.2.3
 tmp=/tmp/$USER/tmp-$$
 mkdir -p $tmp
 
-singularity run --pwd /tmp --writable-tmpfs /shared/apps/bin/rochpl.sif /bin/bash mpirun_rochpl -P 1 -Q 1 -N 64128 --NB 512
+singularity run --pwd /tmp --writable-tmpfs /shared/apps/bin/rochpl_5.0.5_49.sif /bin/bash mpirun_rochpl -P 1 -Q 1 -N 64128 --NB 512
