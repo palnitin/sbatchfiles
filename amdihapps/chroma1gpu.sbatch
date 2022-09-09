@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #SBATCH --nodes=1
-#SBATCH --cpus-per-task=r10
+#SBATCH --cpus-per-task=10
 #SBATCH --time=167:00:00
 #SBATCH --mem=64GB
 #SBATCH -o chroma1gpu_benchmark-%j.out
