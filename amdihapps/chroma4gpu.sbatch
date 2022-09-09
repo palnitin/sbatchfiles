@@ -2,11 +2,12 @@
 
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=4
-#SBATCH --cpus-per-task=8
+#SBATCH --cpus-per-task=20
 #SBATCH --time=167:00:00
-#SBATCH --mem=12GB
+#SBATCH --mem=64GB
 #SBATCH -o chroma4gpu_benchmark-%j.out
 #SBATCH -e chroma4gpu_benchmark-%j.err
+#SBATCH --gres=gpu:4
 
 source /etc/profile.d/modules.sh
 module load rocm/5.2.3
@@ -14,4 +15,4 @@ module load rocm/5.2.3
 tmp=/tmp/$USER/tmp-$$
 mkdir -p $tmp
 
-singularity run --pwd /benchmark --writable-tmpfs /shared/$SLURM_CLUSTER_NAME/apps/bin/chroma_3.43.0-20211118.sif run-benchmark --ngpus 4
+singularity run --pwd /benchmark --writable-tmpfs /shared/apps/bin/chroma_3.43.0-20211118.sif run-benchmark --ngpus 4
