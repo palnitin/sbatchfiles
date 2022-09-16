@@ -14,5 +14,5 @@ module load rocm/5.2.3
 tmp=/tmp/$USER/tmp-$$
 mkdir -p $tmp
 
-singularity run --pwd /benchmark --writable-tmpfs /shared/apps/bin/lammps.sif /bin/bash ./benchmark.sh --mode run --prefix /opt/lammps --gpu-aware-mpi --comm device --with-mpi /opt/lammps/tpl/openmpi --kokkos-gpu-arch VEGA90a --ngpus 3 --memsize 32 --out-label /tmp/gpu3
+singularity run --pwd /benchmark --writable-tmpfs /shared/apps/bin/lammps.sif /opt/lammps/tpl/openmpi/bin/mpirun -np 3 /opt/lammps/bin/lmp -k on g 1 -sf kk -pk kokkos cuda/aware on neigh full comm device neigh/qeq full newton on -v x 8 -v y 8 -v z 8 -v steps 600 -in in.lj -nocite -log /tmp/gpu/lj//log.lammps
 
