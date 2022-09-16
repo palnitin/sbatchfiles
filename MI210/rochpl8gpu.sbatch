@@ -3,7 +3,6 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=8
 #SBATCH --cpus-per-task=20
-#SBATCH --time=167:00:00
 #SBATCH --mem=64GB
 #SBATCH -o rochpl8gpu_benchmark-%j.out
 #SBATCH -e rochpl8gpu_benchmark-%j.err

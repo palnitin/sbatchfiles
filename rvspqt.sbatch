@@ -2,7 +2,6 @@
 
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=1
-#SBATCH --time=167:00:00
 #SBATCH --mem=12GB
 #SBATCH -o rvspqt-%j.out
 #SBATCH -e rvspqt-%j.err
