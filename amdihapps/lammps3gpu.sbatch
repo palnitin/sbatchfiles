@@ -3,7 +3,6 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=3
 #SBATCH --cpus-per-task=20
-#SBATCH --time=167:00:00
 #SBATCH --mem=64GB
 #SBATCH -o lammps3gpu_benchmark-%j.out
 #SBATCH -e lammps3gpu_benchmark-%j.err

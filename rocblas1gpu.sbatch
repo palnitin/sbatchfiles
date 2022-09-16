@@ -2,7 +2,6 @@
 
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=10
-#SBATCH --time=167:00:00
 #SBATCH --mem=64GB
 #SBATCH -o rocblas1gpu_bench-5.2-%j.out
 #SBATCH -e rocblas1gpu_bench-5.2-%j.err

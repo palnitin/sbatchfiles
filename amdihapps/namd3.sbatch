@@ -2,7 +2,6 @@
 
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=20
-#SBATCH --time=167:00:00
 #SBATCH --mem=64GB
 #SBATCH -o namd3_benchmark-%j.out
 #SBATCH -e namd3_benchmark-%j.err
@@ -19,3 +18,5 @@ singularity run --bind ./examples:/examples --pwd /examples /shared/apps/bin/nam
 singularity run --bind ./examples:/examples --pwd /examples /shared/apps/bin/namd3_3.0a9.sif /opt/namd/bin/namd2 apoa1/apoa1.namd +p64 +setcpuaffinity +devices 0 > apoa1.log &
 singularity run --bind ./examples:/examples --pwd /examples /shared/apps/bin/namd3_3.0a9.sif /opt/namd/bin/namd2 f1atpase/f1atpase.namd +p64 +setcpuaffinity +devices 0 > f1atpase.log &
 singularity run --bind ./examples:/examples --pwd /examples /shared/apps/bin/namd3_3.0a9.sif /opt/namd/bin/namd2 stmv/stmv.namd +p64 +setcpuaffinity +devices 0 > stmv.log &
+
+wait

@@ -3,7 +3,6 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=4
 #SBATCH --cpus-per-task=20
-#SBATCH --time=167:00:00
 #SBATCH --mem=64GB
 #SBATCH -o rochpl4gpu_MI100_benchmark-%j.out
 #SBATCH -e rochpl4gpu_MI100_benchmark-%j.err

@@ -2,7 +2,6 @@
 
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=20
-#SBATCH --time=167:00:00
 #SBATCH --mem=64GB
 #SBATCH -o namd_benchmark-%j.out
 #SBATCH -e namd_benchmark-%j.err
@@ -18,4 +17,6 @@ singularity run /shared/apps/bin/namd2.15a2-20211101.sif cp -r /examples ./
 singularity run --bind ./examples:/examples --pwd /examples /shared/apps/bin/namd2.15a2-20211101.sif /opt/namd/bin/namd2 jac/jac.namd +p64 +setcpuaffinity +devices 0 > jac.log &
 singularity run --bind ./examples:/examples --pwd /examples /shared/apps/bin/namd2.15a2-20211101.sif /opt/namd/bin/namd2 apoa1/apoa1.namd +p64 +setcpuaffinity +devices 0 > apoa1.log &
 singularity run --bind ./examples:/examples --pwd /examples /shared/apps/bin/namd2.15a2-20211101.sif /opt/namd/bin/namd2 f1atpase/f1atpase.namd +p64 +setcpuaffinity +devices 0 > f1atpase.log &
-singularity run --bind ./examples:/examples --pwd /examples /shared/apps/bin/namd2.15a2-20211101.sif /opt/namd/bin/namd2 stmv/stmv.namd +p64 +setcpuaffinity +devices 0 > stmv.log
+singularity run --bind ./examples:/examples --pwd /examples /shared/apps/bin/namd2.15a2-20211101.sif /opt/namd/bin/namd2 stmv/stmv.namd +p64 +setcpuaffinity +devices 0 > stmv.log &
+
+wait

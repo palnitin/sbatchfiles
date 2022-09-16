@@ -2,7 +2,6 @@
 
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=10
-#SBATCH --time=167:00:00
 #SBATCH --mem=64GB
 #SBATCH -o specfem3dcart_benchmark-%j.out
 #SBATCH -e specfem3dcart_benchmark-%j.err
