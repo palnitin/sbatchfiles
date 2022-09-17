@@ -3,9 +3,9 @@
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=10
 #SBATCH --mem=64GB
-#SBATCH -o rocblas1gpu_bench-5.2-%j.out
-#SBATCH -e rocblas1gpu_bench-5.2-%j.err
 #SBATCH --gres=gpu:1
+#SBATCH -o %x-%N-%j.out
+#SBATCH -e %x-%N-%j.err
 
 source /etc/profile.d/modules.sh
 module load rocm/5.2.3
