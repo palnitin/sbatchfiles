@@ -6,8 +6,8 @@
 #SBATCH --time=167:00:00
 #SBATCH --mem=12GB
 #SBATCH --job-name=$SLURM_JOB_USER
-#SBATCH -o osu_bw-%j.out
-#SBATCH -e osu_bw-%j.err
+#SBATCH -o %x-%N-%j.out
+#SBATCH -e %x-%N-%j.err
 
 tmp=/tmp/$USER/tmp-$$
 mkdir -p $tmp

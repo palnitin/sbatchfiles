@@ -4,9 +4,9 @@
 #SBATCH --ntasks-per-node=3
 #SBATCH --cpus-per-task=20
 #SBATCH --mem=64GB
-#SBATCH -o lammps3gpu_benchmark-%j.out
-#SBATCH -e lammps3gpu_benchmark-%j.err
 #SBATCH --gres=gpu:3
+#SBATCH -o %x-%N-%j.out
+#SBATCH -e %x-%N-%j.err
 
 source /etc/profile.d/modules.sh
 module load rocm/5.2.3

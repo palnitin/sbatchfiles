@@ -3,8 +3,8 @@
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=12GB
-#SBATCH -o rvspqt-%j.out
-#SBATCH -e rvspqt-%j.err
+#SBATCH -o %x-%N-%j.out
+#SBATCH -e %x-%N-%j.err
 
 source /etc/profile.d/modules.sh
 module load rocm/5.2.3
