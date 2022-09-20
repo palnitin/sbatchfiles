@@ -19,4 +19,4 @@ singularity run --bind ./examples:/examples --pwd /examples /shared/apps/bin/nam
 singularity run --bind ./examples:/examples --pwd /examples /shared/apps/bin/namd2.15a2-20211101.sif /opt/namd/bin/namd2 f1atpase/f1atpase.namd +p64 +setcpuaffinity +devices 0 
 singularity run --bind ./examples:/examples --pwd /examples /shared/apps/bin/namd2.15a2-20211101.sif /opt/namd/bin/namd2 stmv/stmv.namd +p64 +setcpuaffinity +devices 0 
 
-
+rm -rf examples/
