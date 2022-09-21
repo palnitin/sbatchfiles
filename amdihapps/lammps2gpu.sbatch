@@ -24,4 +24,4 @@ singularity run --pwd /benchmark --writable-tmpfs /shared/apps/bin/lammps.sif /o
 
 singularity run --pwd /benchmark --writable-tmpfs /shared/apps/bin/lammps.sif /opt/lammps/tpl/openmpi/bin/mpirun -np 2 /opt/lammps/bin/lmp -k on g 2 -sf kk -pk kokkos cuda/aware on neigh half comm device neigh/qeq full newton on -v steps 400 -in in.snap.exaalt -nocite -log /tmp/$USER/gpu2-$$/snap
 
-rm -rf /tmp/$USER/gpu-$$
+rm -rf /tmp/$USER/gpu2-$$

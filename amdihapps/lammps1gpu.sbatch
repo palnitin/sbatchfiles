@@ -15,4 +15,4 @@ mkdir -p $tmp
 
 singularity run --pwd /benchmark --writable-tmpfs /shared/apps/bin/lammps.sif /opt/lammps/tpl/openmpi/bin/mpirun -np 1 /opt/lammps/bin/lmp -k on g 1 -sf kk -pk kokkos cuda/aware on neigh full comm device neigh/qeq full newton on -v x 8 -v y 8 -v z 8 -v steps 600 -in in.lj -nocite -log /tmp/$USER/gpu1-$$/lj 
 
-rm -rf /tmp/$USER/gpu-$$
+rm -rf /tmp/$USER/gpu1-$$
