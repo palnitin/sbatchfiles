@@ -2,6 +2,7 @@
  
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=8
+#SBATCH --ntasks-per-node=4
 #SBATCH --mem=64GB
 #SBATCH --gres=gpu:4
 #SBATCH -o %x-%N-%j.out
