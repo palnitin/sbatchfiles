@@ -5,14 +5,29 @@
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=64GB
 #SBATCH --gres=gpu:4
-#SBATCH -o %x-%N-%j.out
-#SBATCH -e %x-%N-%j.err
+#SBATCH -o %x-%N-%j.err
+#SBATCH -e %x-%N-%j.out
 
 source /etc/profile.d/modules.sh
 module load rocm/5.2.3
 
-tmp=/tmp/$USER/tmp-$$
+tmp=/tmp/$USER/gpu4-$$
 mkdir -p $tmp
 
-singularity run /shared/apps/bin/gromacs.sif tar -xvf /benchmarks/stmv/stmv.tar.gz
-singularity run /shared/apps/bin/gromacs.sif mpirun -np 4 gmx_mpi mdrun -nsteps 100000 -resetstep 90000 -ntomp 16 -noconfout -nb gpu -bonded cpu -pme gpu -npme 1 -v -nstlist 200 -gpu_id 0123 -s topol.tpr
+#===== ADH-DODEC Benchmark, Threaded-MPI
+mkdir -p $tmp/adh_dodec
+singularity run /shared/apps/bin/gromacs.sif tar -xvf /benchmarks/adh_dodec/adh_dodec.tar.gz -C $tmp/adh_dodec 1>/dev/null
+singularity run /shared/apps/bin/gromacs.sif gmx mdrun -pin on -nsteps 100000 -resetstep 90000 -ntmpi 4 -ntomp 16 -noconfout -nb gpu -bonded gpu -pme gpu -npme 1 -v -nstlist 200 -gpu_id 0123 -s $tmp/adh_dodec/topol.tpr -g $tmp/adh_dodec/md.log -e $tmp/adh_dodec/ener.eder -cpo $tmp/adh_dodec/state.cpt
+
+#===== CELLULOSE_NVE Benchmark, Threaded-MPI
+mkdir -p $tmp/cellulose_nve
+singularity run /shared/apps/bin/gromacs.sif tar -xvf /benchmarks/cellulose_nve/cellulose_nve.tar.gz -C $tmp/cellulose_nve 1>/dev/null
+singularity run /shared/apps/bin/gromacs.sif gmx mdrun -pin on -nsteps 100000 -resetstep 90000 -ntmpi 4 -ntomp 16 -noconfout -nb gpu -bonded gpu -pme gpu -npme 1 -v -nstlist 200 -gpu_id 0123 -s $tmp/cellulose_nve/topol.tpr -g $tmp/cellulose_nve/md.log -e $tmp/cellulose_nve/ener.eder -cpo $tmp/cellulose_nve/state.cpt
+
+# STMV Benchmark, Threaded-MPI
+mkdir -p $tmp/stmv
+singularity run /shared/apps/bin/gromacs.sif tar -xvf /benchmarks/stmv/stmv.tar.gz -C $tmp/stmv 1>/dev/null
+singularity run /shared/apps/bin/gromacs.sif gmx mdrun -pin on -nsteps 100000 -resetstep 90000 -ntmpi 8 -ntomp 8 -noconfout -nb gpu -bonded gpu -pme gpu -npme 1 -v -nstlist 400 -gpu_id 0123 -s $tmp/stmv/topol.tpr -g $tmp/stmv/md.log -e $tmp/stmv/ener.eder -cpo $tmp/stmv/state.cpt
+
+# Do the clean-up
+/bin/rm -rf $tmp
