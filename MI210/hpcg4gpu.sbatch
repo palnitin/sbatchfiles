@@ -11,7 +11,10 @@
 source /etc/profile.d/modules.sh
 module load rocm/5.2.3
 
-tmp=/tmp/$USER/tmp-$$
+tmp=/tmp/$USER/hpcg4-$$
 mkdir -p $tmp
 
-singularity run /shared/apps/bin/rochpcg3.1.0_97.sif mpirun -np 4 hpcg 280 280 280 1860
+singularity run /shared/apps/bin/rochpcg_3.1.amd1_21.sif mpirun --mca pml ucx -np 4 rochpcg 336 168 672 1860
+
+rm -rf /tmp/$USER/hpcg4-$$
+
