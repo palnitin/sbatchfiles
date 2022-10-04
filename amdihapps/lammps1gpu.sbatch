@@ -23,4 +23,6 @@ singularity run --pwd /benchmark --writable-tmpfs /shared/apps/bin/lammps_2022.5
 
 singularity run --pwd /benchmark --writable-tmpfs /shared/apps/bin/lammps_2022.5.04_130.sif /opt/lammps/tpl/openmpi/bin/mpirun -np 1 /opt/lammps/bin/lmp -k on g 1 -sf kk -pk kokkos cuda/aware on neigh half comm device neigh/qeq full newton on -v steps 400 -in in.snap.exaalt -nocite -log /tmp/$USER/gpu1-$$/snap
 
+cp -r /tmp/$USER/gpu1-$$ $PWD/gpu1-$$-$SLURM_JOB_NODELIST-$SLURM_JOB_ID
+
 rm -rf /tmp/$USER/gpu1-$$
