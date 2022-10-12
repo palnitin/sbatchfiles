@@ -1,6 +1,7 @@
 #!/bin/bash
 
 #SBATCH --nodes=1
+#SBATCH --ntasks-per-node=8
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=64GB
 #SBATCH --gres=gpu:1
@@ -14,3 +15,4 @@ tmp=/tmp/$USER/tmp-$$
 mkdir -p $tmp
 
 singularity run /shared/apps/bin/minihacc.sif mini-HACC
+singularity run /shared/apps/bin/minihacc.sif mini-HACC-fp64
