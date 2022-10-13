@@ -13,4 +13,4 @@ module load rocm/5.2.3
 tmp=/tmp/$USER/tmp-$$
 mkdir -p $tmp
 
-singularity run /shared/apps/bin/minimod.sif benchmark-acousticISO
+singularity run /shared/apps/bin/minimod-1.0.0.sif benchmark-acousticISO --grid 100 --gridZ_inner 20 --nstep 1000 --gpuID 0
