@@ -51,6 +51,8 @@ mkdir -p $tmp
 module avail
 module list
 rocm-smi
+rocminfo
+clinfo
 which srun
 which singularity
 which python3
