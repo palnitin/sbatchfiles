@@ -8,7 +8,7 @@
 #SBATCH -e %x-%N-%j.err
 
 source /etc/profile.d/modules.sh
-module load rocm/5.2.3
+module load rocm/5.3.0
 
 tmp=/tmp/$USER/gpu1-$$
 mkdir -p $tmp
