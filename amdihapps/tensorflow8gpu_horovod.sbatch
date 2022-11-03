@@ -10,6 +10,40 @@
 #SBATCH -e %x-%N-%j.err
 
 source /etc/profile.d/modules.sh
+
+# Use partition name to load OS-specific modulespath to use to override login node
+if [[ $(echo $SLURM_JOB_PARTITION | grep -i ubuntu) = *Ubuntu* ]]; then
+    module use /shared/apps/modules/ubuntu/modulefiles
+    module unuse /shared/apps/modules/rhel8/modulefiles
+    module unuse /shared/apps/modules/rhel9/modulefiles
+    module unuse /shared/apps/modules/sles15sp4/modulefiles
+    module unuse /shared/apps/modules/centos8/modulefiles
+elif [[ $(echo $SLURM_JOB_PARTITION | grep -i rhel8) = *RHEL8* ]]; then
+    module unuse /shared/apps/modules/ubuntu/modulefiles
+    module use /shared/apps/modules/rhel8/modulefiles
+    module unuse /shared/apps/modules/rhel9/modulefiles
+    module unuse /shared/apps/modules/sles15sp4/modulefiles
+    module unuse /shared/apps/modules/centos8/modulefiles
+elif [[ $(echo $SLURM_JOB_PARTITION | grep -i rhel9) = *RHEL9* ]]; then
+    module unuse /shared/apps/modules/ubuntu/modulefiles
+    module unuse /shared/apps/modules/rhel8/modulefiles
+    module use /shared/apps/modules/rhel9/modulefiles
+    module unuse /shared/apps/modules/sles15sp4/modulefiles
+    module unuse /shared/apps/modules/centos8/modulefiles
+elif [[ $(echo $SLURM_JOB_PARTITION | grep -i sles15) = *SLES15* ]]; then
+    module unuse /shared/apps/modules/ubuntu/modulefiles
+    module unuse /shared/apps/modules/rhel8/modulefiles
+    module unuse /shared/apps/modules/rhel9/modulefiles
+    module use /shared/apps/modules/sles15sp4/modulefiles
+    module unuse /shared/apps/modules/centos8/modulefiles
+elif [[ $(echo $SLURM_JOB_PARTITION | grep -i centos8) = *CentOS8* ]]; then
+    module unuse /shared/apps/modules/ubuntu/modulefiles
+    module unuse /shared/apps/modules/rhel8/modulefiles
+    module unuse /shared/apps/modules/rhel9/modulefiles
+    module unuse /shared/apps/modules/sles15sp4/modulefiles
+    module use /shared/apps/modules/centos8/modulefiles
+fi
+
 module load rocm/5.3.0
 
 tmp=/tmp/$USER/tmp-$$
@@ -19,3 +53,4 @@ echo "Tensorflow Horovod"
 
 echo "8 GPU"
 singularity run --env PYTHONPATH=/root/.local/lib/python3.9/site-packages /shared/apps/bin/tensorflow_rocm5.2.0-tf2.9-dev2.sif /usr/local/bin/horovodrun -np 8 -H localhost:8 python3 /root/benchmarks/scripts/tf_cnn_benchmarks/tf_cnn_benchmarks.py --model resnet101 --batch_size 64 --variable_update horovod
+
