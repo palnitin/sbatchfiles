@@ -42,7 +42,7 @@ elif [[ $(echo $SLURM_JOB_PARTITION | grep -i centos8) = *CentOS8* ]]; then
     module use /shared/apps/modules/centos8/modulefiles
 fi
 
-module load rocm/5.3.0
+#module load rocm/5.3.0
 
 tmp=/tmp/$USER/tmp-$$
 mkdir -p $tmp
