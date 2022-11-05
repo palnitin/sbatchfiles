@@ -9,38 +9,52 @@
 
 source /etc/profile.d/modules.sh
 
-# Use partition name to load OS-specific modulespath to use to override login node
+# Use partition name to load OS-specific modulespath to use to override
+# login node environment
 if [[ $(echo $SLURM_JOB_PARTITION | grep -i ubuntu) = *Ubuntu* ]]; then
     module use /shared/apps/modules/ubuntu/modulefiles
     module unuse /shared/apps/modules/rhel8/modulefiles
     module unuse /shared/apps/modules/rhel9/modulefiles
     module unuse /shared/apps/modules/sles15sp4/modulefiles
     module unuse /shared/apps/modules/centos8/modulefiles
+    module unuse /shared/apps/modules/rocky9/modulefiles
 elif [[ $(echo $SLURM_JOB_PARTITION | grep -i rhel8) = *RHEL8* ]]; then
     module unuse /shared/apps/modules/ubuntu/modulefiles
     module use /shared/apps/modules/rhel8/modulefiles
     module unuse /shared/apps/modules/rhel9/modulefiles
     module unuse /shared/apps/modules/sles15sp4/modulefiles
     module unuse /shared/apps/modules/centos8/modulefiles
+    module unuse /shared/apps/modules/rocky9/modulefiles
 elif [[ $(echo $SLURM_JOB_PARTITION | grep -i rhel9) = *RHEL9* ]]; then
     module unuse /shared/apps/modules/ubuntu/modulefiles
     module unuse /shared/apps/modules/rhel8/modulefiles
     module use /shared/apps/modules/rhel9/modulefiles
     module unuse /shared/apps/modules/sles15sp4/modulefiles
     module unuse /shared/apps/modules/centos8/modulefiles
+    module unuse /shared/apps/modules/rocky9/modulefiles
 elif [[ $(echo $SLURM_JOB_PARTITION | grep -i sles15) = *SLES15* ]]; then
     module unuse /shared/apps/modules/ubuntu/modulefiles
     module unuse /shared/apps/modules/rhel8/modulefiles
     module unuse /shared/apps/modules/rhel9/modulefiles
     module use /shared/apps/modules/sles15sp4/modulefiles
     module unuse /shared/apps/modules/centos8/modulefiles
+    module unuse /shared/apps/modules/rocky9/modulefiles
 elif [[ $(echo $SLURM_JOB_PARTITION | grep -i centos8) = *CentOS8* ]]; then
     module unuse /shared/apps/modules/ubuntu/modulefiles
     module unuse /shared/apps/modules/rhel8/modulefiles
     module unuse /shared/apps/modules/rhel9/modulefiles
     module unuse /shared/apps/modules/sles15sp4/modulefiles
     module use /shared/apps/modules/centos8/modulefiles
+    module unuse /shared/apps/modules/rocky9/modulefiles
+elif [[ $(echo $SLURM_JOB_PARTITION | grep -i rocky9) = *Rocky9* ]]; then
+    module unuse /shared/apps/modules/ubuntu/modulefiles
+    module unuse /shared/apps/modules/rhel8/modulefiles
+    module unuse /shared/apps/modules/rhel9/modulefiles
+    module unuse /shared/apps/modules/sles15sp4/modulefiles
+    module unuse /shared/apps/modules/centos8/modulefiles
+    module use /shared/apps/modules/rocky9/modulefiles
 fi
+
 
 module load rocm/5.3.0
 
@@ -49,4 +63,4 @@ mkdir -p $tmp
 
 singularity run /shared/apps/bin/grid_0.8.2-20211213.sif Benchmark_ITT --accelerator-threads 8
 
-exit 0
+wait
