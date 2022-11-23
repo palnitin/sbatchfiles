@@ -62,15 +62,15 @@ module load rocm/5.3.2
 tmp=/tmp/$USER/gpu4-$$
 mkdir -p $tmp
 
-singularity run --pwd /benchmark --writable-tmpfs /shared/apps/bin/lammps_2022.5.04_150.sif /opt/lammps/tpl/openmpi/bin/mpirun -np 1 /opt/lammps/bin/lmp -k on g 1 -sf kk -pk kokkos cuda/aware on neigh full comm device neigh/qeq full newton on -v x 10 -v y 10 -v z 10 -v steps 1000 -in in.lj -nocite -log /tmp/$USER/gpu1-$$/lj 
+singularity run --pwd /benchmark --writable-tmpfs /shared/apps/bin/lammps_2022.5.04_130.sif /opt/lammps/tpl/openmpi/bin/mpirun -np 4 /opt/lammps/bin/lmp -k on g 4 -sf kk -pk kokkos cuda/aware on neigh full comm device neigh/qeq full newton on -v x 10 -v y 10 -v z 10 -v steps 600 -in in.lj -nocite -log /tmp/$USER/gpu4-$$/lj 
 
-singularity run --pwd /benchmark --writable-tmpfs /shared/apps/bin/lammps_2022.5.04_150.sif /opt/lammps/tpl/openmpi/bin/mpirun -np 1 /opt/lammps/bin/lmp -k on g 1 -sf kk -pk kokkos cuda/aware on neigh full comm device neigh/qeq full newton on -v x 12 -v y 12 -v z 12 -v steps 500 -in in.eam -nocite -log /tmp/$USER/gpu1-$$/eam
+singularity run --pwd /benchmark --writable-tmpfs /shared/apps/bin/lammps_2022.5.04_130.sif /opt/lammps/tpl/openmpi/bin/mpirun -np 4 /opt/lammps/bin/lmp -k on g 4 -sf kk -pk kokkos cuda/aware on neigh full comm device neigh/qeq full newton on -v x 12 -v y 12 -v z 12 -v steps 300 -in in.eam -nocite -log /tmp/$USER/gpu4-$$/eam
 
-singularity run --pwd /benchmark --writable-tmpfs /shared/apps/bin/lammps_2022.5.04_150.sif /opt/lammps/tpl/openmpi/bin/mpirun -np 1 /opt/lammps/bin/lmp -k on g 1 -sf kk -pk kokkos cuda/aware on neigh half binsize 5.10 comm device neigh/qeq full newton on -v x 6 -v y 6 -v z 6 -v steps 500 -in in.tersoff -nocite -log /tmp/$USER/gpu1-$$/tersoff
+singularity run --pwd /benchmark --writable-tmpfs /shared/apps/bin/lammps_2022.5.04_130.sif /opt/lammps/tpl/openmpi/bin/mpirun -np 4 /opt/lammps/bin/lmp -k on g 4 -sf kk -pk kokkos cuda/aware on neigh half binsize 5.6 comm device neigh/qeq full newton on -v x 6 -v y 6 -v z 6 -v steps 300 -in in.tersoff -nocite -log /tmp/$USER/gpu4-$$/tersoff
 
-singularity run --pwd /benchmark --writable-tmpfs /shared/apps/bin/lammps_2022.5.04_150.sif /opt/lammps/tpl/openmpi/bin/mpirun -np 1 /opt/lammps/bin/lmp -k on g 1 -sf kk -pk kokkos cuda/aware on neigh half comm device neigh/qeq full newton on -v x 38 -v y 38 -v z 38 -v steps 500 -in in.reaxc.hns -nocite -log /tmp/$USER/gpu1-$$/reaxff
+singularity run --pwd /benchmark --writable-tmpfs /shared/apps/bin/lammps_2022.5.04_130.sif /opt/lammps/tpl/openmpi/bin/mpirun -np 4 /opt/lammps/bin/lmp -k on g 4 -sf kk -pk kokkos cuda/aware on neigh half comm device neigh/qeq full newton on -v x 38 -v y 38 -v z 38 -v steps 300 -in in.reaxc.hns -nocite -log /tmp/$USER/gpu4-$$/reaxff
 
-singularity run --pwd /benchmark --writable-tmpfs /shared/apps/bin/lammps_2022.5.04_150.sif /opt/lammps/tpl/openmpi/bin/mpirun -np 1 /opt/lammps/bin/lmp -k on g 1 -sf kk -pk kokkos cuda/aware on neigh half comm device neigh/qeq full newton on -v steps 400 -in in.snap.exaalt -nocite -log /tmp/$USER/gpu1-$$/snap
+singularity run --pwd /benchmark --writable-tmpfs /shared/apps/bin/lammps_2022.5.04_130.sif /opt/lammps/tpl/openmpi/bin/mpirun -np 4 /opt/lammps/bin/lmp -k on g 4 -sf kk -pk kokkos cuda/aware on neigh half comm device neigh/qeq full newton on -v steps 400 -in in.snap.exaalt -nocite -log /tmp/$USER/gpu4-$$/snap
 
 
 
