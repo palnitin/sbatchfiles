@@ -1,14 +1,12 @@
 #!/bin/bash
-# Copyright (c) 2022 Advanced Micro Devices, Inc. All Rights Reserved.
 
 #SBATCH --nodes=1
-#SBATCH --cpus-per-task=16
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=8
 #SBATCH --mem=64GB
+#SBATCH --gres=gpu:1
 #SBATCH -o %x-%N-%j.out
 #SBATCH -e %x-%N-%j.err
-
-tmp=/tmp/$USER/tmp-$$
-mkdir -p $tmp
 
 source /etc/profile.d/modules.sh
 
@@ -59,11 +57,30 @@ elif [[ $(echo $SLURM_JOB_PARTITION | grep -i rocky9) = *Rocky9* ]]; then
 fi
 
 
-
 module load rocm/5.3.3
-module load ompi/4.1.4
-module load ucx/1.13.1
-#module list
 
-mpirun -np 2 -x UCX_RNDV_PIPELINE_SEND_THRESH=256k -x UCX_RNDV_FRAG_SIZE=rocm:4m -x UCX_RNDV_THRESH=64 --mca osc ucx --mca spml ucx -x UCX_LOG_LEVEL=TRACE_DATA -mca pml ucx -x UCX_TLS=sm,self,rocm_copy,rocm_ipc /shared/apps/ubuntu/osu-micro-benchmarks-5.9/mpi/pt2pt/osu_bw -d rocm D D
+tmp=/tmp/$USER/tmp-$$
+mkdir -p $tmp
+
+module avail
+module list
+rocm-smi
+rocminfo
+clinfo
+tuned-adm active
+which srun
+which singularity
+which python3
+pip3 list
+which gcc
+singularity --version
+python3 --version
+gcc --version
+g++ --version
+amdclang --version
+hipcc --version
+cmake --version
+
+
+wait
 

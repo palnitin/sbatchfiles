@@ -57,7 +57,7 @@ elif [[ $(echo $SLURM_JOB_PARTITION | grep -i rocky9) = *Rocky9* ]]; then
 fi
 
 
-module load rocm/5.3.2
+module load rocm/5.3.3
 
 tmp=/tmp/$USER/hpcg1-$$
 mkdir -p $tmp
