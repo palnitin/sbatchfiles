@@ -80,7 +80,6 @@ singularity run /shared/apps/bin/gromacs_2022.3.amd1_161.sif tar -xvf /benchmark
 
 singularity run /shared/apps/bin/gromacs_2022.3.amd1_161.sif gmx mdrun -pin on -nsteps 100000 -resetstep 90000 -ntmpi 1 -ntomp 64 -noconfout -nb gpu -bonded gpu -pme gpu -v -nstlist 200 -gpu_id 0 -s /tmp/$USER/gpu1-$$/stmv/topol.tpr -g /tmp/$USER/gpu1-$$/stmv/md.log -e /tmp/$USER/gpu1-$$/stmv/ener.eder -cpo /tmp/$USER/gpu1-$$/stmv/state.cpt
 
-cp -r /tmp/$USER/gpu1-$$   $PWD/gpu1-$$-$SLURM_JOB_NODELIST-$SLURM_JOB_ID
 
 # Do the clean-up
 /bin/rm -rf $tmp
