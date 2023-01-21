@@ -1,11 +1,10 @@
 #!/bin/bash
- 
-#SBATCH --nodes=1
-#SBATCH --ntasks-per-node=8
-#SBATCH --cpus-per-task=16
-#SBATCH --mem=0
-#SBATCH --gres=gpu:8
 
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=2
+#SBATCH --cpus-per-task=16
+#SBATCH --mem=128GB
+#SBATCH --gres=gpu:2
 #SBATCH -o %x-%N-%j.out
 #SBATCH -e %x-%N-%j.err
 
@@ -60,11 +59,10 @@ fi
 
 module load rocm-5.4.0/ucx-1.13.1/ompi/4.1.4
 
-tmp=/tmp/$USER/tmp-$$
+tmp=/tmp/$USER/hpcg2-$$
 mkdir -p $tmp
 
-echo "Tensorflow"
+singularity run /shared/apps/bin/rochpcg_3.1.amd1_21.sif mpirun --mca pml ucx -np 2 rochpcg 336 168 672 1860
 
-echo "8 GPU"
-singularity run --env TF_ROCM_FUSION_ENABLE=1 --env PYTHONPATH=/root/.local/lib/python3.9/site-packages /shared/apps/bin/tensorflow_rocm5.4-tf2.9-dev.sif python3 /root/benchmarks/scripts/tf_cnn_benchmarks/tf_cnn_benchmarks.py --model=resnet50  --num_gpus=8 --batch_size=256 --num_batches=100 --print_training_accuracy=True --variable_update=parameter_server --local_parameter_device=gpu
+rm -rf /tmp/$USER/hpcg2-$$
 
