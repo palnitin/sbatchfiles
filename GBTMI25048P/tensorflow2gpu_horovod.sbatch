@@ -55,6 +55,7 @@ elif [[ $(echo $SLURM_JOB_PARTITION | grep -i rocky9) = *Rocky9* ]]; then
     module use /shared/apps/modules/rocky9/modulefiles
 fi
 
+module purge
 module load rocm/5.4.2
 
 tmp=/tmp/$USER/tmp-$$
