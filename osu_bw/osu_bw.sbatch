@@ -60,7 +60,7 @@ fi
 
 
 
-module load rocm-5.4.0/ucx-1.13.1/ompi/4.1.4
+module load rocm-5.4.2/ucx-1.13.1/ompi/4.1.4
 module load ompi/4.1.4
 module load ucx/1.13.1
 #module list
