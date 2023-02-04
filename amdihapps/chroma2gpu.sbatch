@@ -63,4 +63,9 @@ module load rocm-5.4.2/ucx-1.13.1/ompi/4.1.4
 tmp=/tmp/$USER/tmp-$$
 mkdir -p $tmp
 
-singularity run --pwd /benchmark --writable-tmpfs /shared/apps/bin/chroma_3.43.0-20211118.sif run-benchmark --ngpus 2
+# Copy the benchmark data to avoid using --writable-tmpfs
+singularity run /shared/apps/bin/chroma_3.43.0_29.sif cp -r /benchmark $tmp
+singularity run --bind $tmp/benchmark:/benchmark --pwd /benchmark /shared/apps/bin/chroma_3.43.0_29.sif run-benchmark --ngpus 2
+
+# Cleanup the benchmark data which was copied
+rm -rf $tmp
