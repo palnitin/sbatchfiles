@@ -63,4 +63,4 @@ module load rocm/5.4.2
 tmp=/tmp/$USER/tmp-$$
 mkdir -p $tmp
 
-singularity run /shared/apps/bin/rochpl_5.0.5_49.sif mpirun_rochpl -P 1 -Q 2 -N 128000 --NB 512 
+singularity run /shared/apps/bin/rochpl:6.0.amd0_55.sif mpirun_rochpl -P 1 -Q 2 -N 128000 --NB 512 
